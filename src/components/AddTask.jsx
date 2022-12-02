@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SelectCategory from "./SelectCategory";
 
 const AddTask = ({ addTaskFn }) => {
   const [value, setValue] = useState("");
@@ -14,28 +15,15 @@ const AddTask = ({ addTaskFn }) => {
     setCategory(0);
   };
 
-  const categoryHandler = (e) => {
-    setCategory(e.target.value);
+  const categoryHandler = (cat) => {
+    setCategory(cat);
   };
 
   return (
     <div>
       <input type="text" onChange={valueHandler} value={value} />
       <button onClick={addHandler}>Add</button>
-      <select name="category" id="category" onChange={categoryHandler}>
-        <option selected={category === 0} value="0">
-          All
-        </option>
-        <option selected={category === 1} value="1">
-          Home 🏠
-        </option>
-        <option selected={category === 2} value="2">
-          Work 🗄
-        </option>
-        <option selected={category === 3} value="3">
-          School 📚
-        </option>
-      </select>
+      <SelectCategory category={category} categoryFn={categoryHandler} />
     </div>
   );
 };
